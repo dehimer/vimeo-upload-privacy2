@@ -2,11 +2,11 @@
  | Vimeo-Upload: Upload videos to your Vimeo account directly from a
  |               browser or a Node.js app
  |
- |  ╭───╮╭─╮  
- |  │   ││ │╭─╮╭──┬──┬─╮╭───╮╭───╮   
+ |  ╭───╮╭─╮
+ |  │   ││ │╭─╮╭──┬──┬─╮╭───╮╭───╮
  |  │   ││ │├─┤│ ╭╮ ╭╮ ││ ─ ││╭╮ │  ╭────────┬─────────────────────╮
- |  ╰╮  ╰╯╭╯│ ││ ││ ││ ││  ─┤│╰╯ │  | UPLOAD │ ▒▒▒▒▒▒▒▒▒▒▒░░░░ %75 | 
- |   ╰────╯ ╰─╯╰─╯╰─╯╰─╯╰───╯╰───╯  ╰────────┴─────────────────────╯                    
+ |  ╰╮  ╰╯╭╯│ ││ ││ ││ ││  ─┤│╰╯ │  | UPLOAD │ ▒▒▒▒▒▒▒▒▒▒▒░░░░ %75 |
+ |   ╰────╯ ╰─╯╰─╯╰─╯╰─╯╰───╯╰───╯  ╰────────┴─────────────────────╯
  |
  |
  | This project was released under Apache 2.0" license.
@@ -29,7 +29,7 @@
         root.VimeoUpload = factory()
     }
 }(this, function() {
-
+    var attempts = 0
     // -------------------------------------------------------------------------
     // RetryHandler Class
 
@@ -384,9 +384,11 @@
      * @param {object} e XHR event
      */
     me.prototype.onContentUploadError_ = function(e) {
-        if (e.target.status && e.target.status < 500) {
+        if ((e.target.status && e.target.status < 500) || this.offset === 0 || attempts === 5) {
+            attempts = 0
             this.onError(e.target.response)
         } else {
+            attempts += 1
             this.retryHandler.retry(this.resume_())
         }
     }
