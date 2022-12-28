@@ -329,6 +329,7 @@
             // add the metadata
             this.onGetMetadata_(e, video_id)
         }.bind(this)
+        xhr.setRequestHeader('Content-Type', 'text/html')
         xhr.send(this.buildQuery_(this.videoData))
     }
 
