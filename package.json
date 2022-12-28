@@ -1,12 +1,12 @@
 {
-  "name": "vimeo-upload",
-  "version": "0.1.8",
+  "name": "vimeo-upload-privacy",
+  "version": "1.0.1",
   "description": "Upload videos to your Vimeo account and update their metadata directly from a browser or a Node.js app.",
   "main": "vimeo-upload.js",
-  "homepage": "https://github.com/websemantics/vimeo-upload#readme",
+  "homepage": "https://github.com/StoryFire/vimeo-upload-privacy",
   "repository": {
     "type": "git",
-    "url": "websemantics/vimeo-upload.git"
+    "url": "StoryFire/vimeo-upload-privacy.git"
   },
   "bugs": {
     "url": "https://github.com/websemantics/vimeo-upload/issues"
@@ -29,6 +29,6 @@
     "predeploy": "mkdir -p ${npm_package_deploy_dist} && npm run copy -s&& cd $npm_package_deploy_dist && git init && git config user.name $npm_package_deploy_name && git config user.email $npm_package_deploy_email && git add -A . && git commit -am \"$npm_package_deploy_message\" ",
     "copy": "cp -r ./img $npm_package_deploy_dist && cp ./index.html $npm_package_deploy_dist && cp ./vimeo-upload.js $npm_package_deploy_dist "
   },
-  "author": "Adnan M.Sagar, PhD.",
+  "author": "lucianopf",
   "license": "Apache 2.0"
 }
